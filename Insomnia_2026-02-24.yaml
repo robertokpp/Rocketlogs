@@ -1,0 +1,69 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Rocket log
+meta:
+  id: wrk_1c647faf08df4d8a96b7616fc59d6e62
+  created: 1771988174957
+  modified: 1771988186642
+  description: ""
+collection:
+  - name: Users
+    meta:
+      id: fld_cc7675472f604611809069b024bfc587
+      created: 1771988195071
+      modified: 1771988497726
+      sortKey: -1771988195071
+      description: ""
+    children:
+      - url: "{{ _.BASE_URL }}/{{ _.RESOURCE }}"
+        name: Create
+        meta:
+          id: req_ef2158f662de47e0900448ace735bdd8
+          created: 1771988500351
+          modified: 1771988540984
+          isPrivate: false
+          description: ""
+          sortKey: -1771988500351
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      RESOURCE: users
+    environmentPropertyOrder:
+      "&":
+        - RESOURCE
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c7c2871504837a5ea975bec348aff062eb037a79
+    created: 1771988174960
+    modified: 1771988174960
+environments:
+  name: Base Environmen
+  meta:
+    id: env_c7c2871504837a5ea975bec348aff062eb037a79
+    created: 1771988174959
+    modified: 1771988451905
+    isPrivate: false
+  subEnvironments:
+    - name: Dev
+      meta:
+        id: env_0487164a0fd34c61b9b44ee3c8c6db5b
+        created: 1771988429737
+        modified: 1771988583043
+        isPrivate: false
+        sortKey: 1771988429736
+      data:
+        BASE_URL: localhost:3333
+      color: "#14db3c"
