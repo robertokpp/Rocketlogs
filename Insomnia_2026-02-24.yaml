@@ -20,12 +20,22 @@ collection:
         meta:
           id: req_ef2158f662de47e0900448ace735bdd8
           created: 1771988500351
-          modified: 1771988540984
+          modified: 1772156055835
           isPrivate: false
           description: ""
           sortKey: -1771988500351
         method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Roberto Kennedy",
+            	"email": "roberto@gmail.com",
+            	"password": "123456"
+            }
         headers:
+          - name: Content-Type
+            value: application/json
           - name: User-Agent
             value: insomnia/12.3.1
             description: ""
@@ -43,6 +53,39 @@ collection:
     environmentPropertyOrder:
       "&":
         - RESOURCE
+  - name: Sessions
+    meta:
+      id: fld_40919032d6034d2496ae4d9fe9b053c8
+      created: 1772161291728
+      modified: 1772161365793
+      sortKey: -1772161291728
+      description: ""
+    children:
+      - url: "{{ _.BASE_URL }}/{{ _.RESOURCE }}"
+        name: Create
+        meta:
+          id: req_9ebfe12d4c594794b69f98df5a3534b1
+          created: 1772161294667
+          modified: 1772161413118
+          isPrivate: false
+          description: ""
+          sortKey: -1772161294667
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      RESOURCE: sessions
 cookieJar:
   name: Default Jar
   meta:

@@ -1,16 +1,43 @@
 import { Request, Response } from "express";
+import { AppError } from "@/utils/AppError";
+import { prisma } from "@/database/prisma";
+import { authConfig } from "@/configs/auth";
+import { sign } from "jsonwebtoken";
 import { z } from "zod";
+import { compare } from "bcrypt";
 
 class SessionsController {
-  create(request: Request, response: Response) {
+  async create(request: Request, response: Response) {
     const bodySchema = z.object({
       email: z.string().email(),
-      password: z.string().min(6),
+      password: z.string(),
     });
 
     const { email, password } = bodySchema.parse(request.body);
 
-    return response.json({ massage: "ok" });
+    const user = await prisma.user.findFirst({
+      where: { email },
+    });
+
+    if (!user) {
+      throw new AppError("Invalid email or password", 401);
+    }
+
+    const passwordMatched = await compare(password, user.password);
+
+    if (!passwordMatched) {
+      throw new AppError("Invalid email or password", 401);
+    }
+
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({ role: user.role ?? "customer" }, secret, {
+      subject: user.id,
+      expiresIn,
+    });
+
+    const { password: hashedPassword, ...userWithoutPassword } = user;
+    return response.json({ token, ...userWithoutPassword });
   }
 }
 
