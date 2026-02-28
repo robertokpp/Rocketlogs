@@ -66,12 +66,21 @@ collection:
         meta:
           id: req_9ebfe12d4c594794b69f98df5a3534b1
           created: 1772161294667
-          modified: 1772161413118
+          modified: 1772248782022
           isPrivate: false
           description: ""
           sortKey: -1772161294667
         method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "roberto@gmail.com",
+            	"password": "123456"
+            }
         headers:
+          - name: Content-Type
+            value: application/json
           - name: User-Agent
             value: insomnia/12.3.1
             description: ""
@@ -86,6 +95,44 @@ collection:
           rebuildPath: true
     environment:
       RESOURCE: sessions
+  - name: Deliveries
+    meta:
+      id: fld_6c38dba0acdc4f8f86433332c7c2c008
+      created: 1772320540145
+      modified: 1772320584976
+      sortKey: -1772320540145
+      description: ""
+    children:
+      - url: "{{ _.BASE_URL }}/{{ _.RESOURCE }}"
+        name: Create
+        meta:
+          id: req_d8631e27cf744de5b5fd4eecbc152f00
+          created: 1772320543071
+          modified: 1772321044672
+          isPrivate: false
+          description: ""
+          sortKey: -1772320543071
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: false
+          token: "{% response 'body', 'req_9ebfe12d4c594794b69f98df5a3534b1',
+            'b64::JC50b2tlbg==::46b', 'always', 60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      RESOURCE: deliveries
 cookieJar:
   name: Default Jar
   meta:
