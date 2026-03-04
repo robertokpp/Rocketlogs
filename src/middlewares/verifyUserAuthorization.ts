@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "@/utils/AppError";
-import { request } from "http";
 
 function verifyUserAuthorization(role: string[]) {
   return (request: Request, Response: Response, next: NextFunction) => {
