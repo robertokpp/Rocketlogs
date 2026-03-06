@@ -52,6 +52,10 @@ class DeliveriesLogsController {
       },
     });
 
+    if(!delivery){
+      return response.status(403).json({ message: "delivery not found"})
+    }
+
     if (
       request.user?.role === "customer" &&
       request.user.id !== delivery?.userId
